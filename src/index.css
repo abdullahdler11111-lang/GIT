@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Vazirmatn", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+  html, body {
+    width: 80mm;
+    height: auto;
+    background: white !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #print-receipt-area, #print-receipt-area * {
+    visibility: visible;
+  }
+  #print-receipt-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm !important;
+    max-width: 80mm !important;
+    box-sizing: border-box !important;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 5mm !important;
+  }
+  
+  /* Optimize colors and borders for thermal printers (pure black text and clear borders) */
+  .text-emerald-700, .text-emerald-800, .text-slate-900, .text-slate-800, .text-slate-700, .text-slate-500 {
+    color: #000000 !important;
+  }
+  
+  .bg-emerald-50\/50, .bg-slate-50 {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .border-slate-100, .border-slate-200 {
+    border-color: #000000 !important;
+  }
+
+  .border-dashed {
+    border-style: dashed !important;
+    border-color: #000000 !important;
+  }
+  
+  /* Hide close/print buttons during print */
+  .no-print {
+    display: none !important;
+  }
+}

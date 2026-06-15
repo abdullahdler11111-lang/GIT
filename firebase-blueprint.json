@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "ClinicConfig": {
+      "title": "Clinic Configuration",
+      "description": "Stores user-defined lists such as doctors, nurses, procedures, and custom splits.",
+      "type": "object",
+      "properties": {
+        "procedures": { "type": "array", "description": "List of procedures" },
+        "doctors": { "type": "array", "description": "List of surgeons" },
+        "nurses": { "type": "array", "description": "List of nurses" },
+        "anesthesiaDoctors": { "type": "array", "description": "List of anesthesia doctors" },
+        "anesthesiaStaff": { "type": "array", "description": "List of anesthesia staff" },
+        "deactivatedItems": { "type": "array", "description": "List of deactivated names" },
+        "savedCustomSplitNames": { "type": "array", "description": "List of custom split names" },
+        "procedureSplits": { "type": "object", "description": "JSON representation of procedure splits" },
+        "ownerId": { "type": "string", "description": "Auth UID of the owner" }
+      },
+      "required": ["ownerId"]
+    },
+    "PatientRecord": {
+      "title": "Patient Record",
+      "description": "A single patient calculation record.",
+      "type": "object",
+      "properties": {
+        "recordDate": { "type": "string", "description": "YYYY-MM-DD" },
+        "procedureType": { "type": "string", "description": "Name of the procedure" },
+        "amount": { "type": "number", "description": "Total amount" },
+        "surgeonName": { "type": "string" },
+        "anesthesiaDocName": { "type": "string" },
+        "anesthesiaStaffName": { "type": "string" },
+        "nurses": { "type": "array", "description": "Names of nurses involved" },
+        "isCustomDeduction": { "type": "boolean" },
+        "clinicPercent": { "type": "number" },
+        "surgeonsPercent": { "type": "number" },
+        "anesthesiaDocPercent": { "type": "number" },
+        "anesthesiaStaffPercent": { "type": "number" },
+        "nursesPercent": { "type": "number" },
+        "createdAt": { "type": "number", "description": "Timestamp" },
+        "ownerId": { "type": "string", "description": "Auth UID of the owner" }
+      },
+      "required": ["recordDate", "procedureType", "amount", "createdAt", "ownerId"]
+    }
+  },
+  "firestore": {
+    "users/{userId}/config/{configId}": {
+      "schema": { "$ref": "#/entities/ClinicConfig" },
+      "description": "Configuration settings for the user's clinic."
+    },
+    "users/{userId}/records/{recordId}": {
+      "schema": { "$ref": "#/entities/PatientRecord" },
+      "description": "Individual patient records calculation."
+    }
+  }
+}

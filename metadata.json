@@ -1,0 +1,6 @@
+{
+  "name": "Smart Hospital",
+  "description": "Surgery payment management and staff accounts system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
